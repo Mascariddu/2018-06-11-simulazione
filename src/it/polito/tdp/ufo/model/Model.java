@@ -111,33 +111,19 @@ public class Model {
 			System.out.println("NEW BEST");
 		}
 		
+		String last = parziale.get(parziale.size()-1);
 		
-		//MIA SOLUZIONE
-		for(String s : vertex) {
-			if(controlla(parziale,s)) {
+		for(String s : Graphs.successorListOf(grafo, last)) {
+			
+			if(!parziale.contains(s)) {
 				
-				System.out.println("AGGIUNGO");
 				parziale.add(s);
 				cerca(parziale);
 				parziale.remove(parziale.size()-1);
-				
-			} else {
-				System.out.println("ESCO");
-				return;
-			}
+			} 
 			
-
 		}
 		
-	}
-
-	private boolean controlla(List<String> parziale, String s) {
-		// TODO Auto-generated method stub
-		String last = parziale.get(parziale.size()-1);
-		
-		if(!parziale.contains(s) && Graphs.successorListOf(grafo, last).contains(s) /*&& !last.equals(s)*/)
-			return true;
-		else return false;
 	}
 
 
